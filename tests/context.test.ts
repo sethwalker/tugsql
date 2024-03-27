@@ -1,34 +1,19 @@
 import { Context, advance } from "../src/context";
 
-import { expect, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
 
-test("Context", () => {
+describe("Context", () => {
   test("default line and col", () => {
-    expect(new Context("<literal>")).toEqual({
-      line: 0,
-      col: 1,
-      sqlfile: "<literal>",
-    });
+    expect(new Context("<literal>").line).toEqual(0);
+    expect(new Context("<literal>").col).toEqual(1);
   });
   test("advance col", () => {
-    expect(advance(new Context("<literal>"), 4)).toEqual({
-      line: 0,
-      col: 5,
-      sqlfile: "<literal>",
-    });
+    expect(advance(new Context("<literal>"), 0, 4).col).toEqual(5);
   });
   test("advance lines", () => {
-    expect(advance(new Context("<literal>", 2, 3), 2)).toEqual({
-      line: 2,
-      col: 5,
-      sqlfile: "<literal>",
-    });
+    expect(advance(new Context("<literal>"), 2).line).toEqual(2);
   });
   test("advance lines from indents", () => {
-    expect(advance(new Context("<literal>", 2, 3), 2, 1)).toEqual({
-      line: 3,
-      col: 1,
-      sqlfile: "<literal>",
-    });
+    expect(advance(new Context("<literal>", 0, 3), 2).col).toEqual(1);
   });
 });

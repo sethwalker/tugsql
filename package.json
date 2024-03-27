@@ -1,11 +1,15 @@
 {
   "name": "tugsql",
   "version": "0.0.1",
-  "description": "A TypeScript port of PugSQL",
+  "author": "Seth Walker",
   "main": "index.js",
+  "description": "A TypeScript port of PugSQL",
+  "license": "Apache-2.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Seth Walker",
-  "license": "Apache-2.0"
+  "devDependencies": {
+    "@types/bun": "^1.0.11",
+    "typedoc": "^0.25.12"
+  }
 }
